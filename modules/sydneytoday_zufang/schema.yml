@@ -1,0 +1,204 @@
+sydneytoday_zufang:
+  pk: id
+  fields:
+    id: INT NOT NULL AUTO_INCREMENT
+    name: VARCHAR(32)
+    phone_img: VARCHAR(100)
+    phone: VARCHAR(12)
+    mobile_img: VARCHAR(100)
+    mobile: VARCHAR(12)
+    qq: VARCHAR(20)
+    email_img: VARCHAR(100)
+    email: VARCHAR(50)
+    wechat: VARCHAR(30)
+    vendor_type: VARCHAR(10)
+    rental_type: VARCHAR(10)
+    price: VARCHAR(10)
+    property_type: VARCHAR(10)
+    suburb: VARCHAR(20)
+    address: VARCHAR(512)
+    client_comment: VARCHAR(1024)
+    property_images: VARCHAR(1024)
+    post_id: INT NOT NULL
+    comment: TEXT
+    cleaned: TINYINT(1) DEFAULT 0
+  indexes:
+    - `sydneytoday_zufang_post_id` (`post_id` ASC)
+    
+  form:
+    fields:
+      name:
+        widget: text
+        widget_conf:
+          required: 0
+      phone_img:
+        widget: text
+        widget_conf:
+          required: 0
+      phone:
+        widget: text
+        widget_conf:
+          required: 0
+      mobile_img:
+        widget: text
+        widget_conf:
+          required: 0
+      mobile:
+        widget: text
+        widget_conf:
+          required: 0
+      qq:
+        widget: text
+        widget_conf:
+          required: 0
+      email_img:
+        widget: text
+        widget_conf:
+          required: 0
+      email:
+        widget: email
+        widget_conf:
+          required: 0
+      wechat:
+        widget: text
+        widget_conf:
+          required: 0
+      post_id:
+        widget: text
+        widget_conf:
+          required: 1
+      vendor_type:
+        widget: text
+        widget_conf:
+          required: 0
+      rental_type:
+        widget: text
+        widget_conf:
+          required: 0
+      price:
+        widget: text
+        widget_conf:
+          required: 0
+      property_type:
+        widget: text
+        widget_conf:
+          required: 0
+      suburb:
+        widget: text
+        widget_conf:
+          required: 0
+      address:
+        widget: text
+        widget_conf:
+          required: 0
+      client_comment:
+        widget: textarea
+        widget_conf:
+          required: 0
+          wysiwyg: 0
+      property_images:
+        widget: textarea
+        widget_conf:
+          required: 0
+          wysiwyg: 0
+      comment:
+        widget: textarea
+        widget_conf:
+          required: 0
+          wysiwyg: 0
+      cleaned:
+        widget: checkbox_single
+          
+        
+    names:
+      en: Sydneytoday Zufang
+      zh: 今日悉尼 - 租房
+
+    
+#project:
+#  pk: id
+#  fields:
+#    id: INT NOT NULL AUTO_INCREMENT
+#    title: VARCHAR(512) NOT NULL
+#    password: VARCHAR(20)
+#    email: VARCHAR(30)
+#    description_en: TEXT
+#    description_zh: TEXT
+#    active: TINYINT(1) DEFAULT 1
+#    hot: TINYINT(1) DEFAULT 1
+#    price: DECIMAL(6) DEFAULT 0
+#    images: VARCHAR(800)
+#    thumbnail: VARCHAR(100)
+#  form:
+#    fields:
+#      title:
+#        widget: text
+#        widget_conf:
+#          required: 1
+#          size: 150
+#      password:
+#        widget: password
+#        widget_conf:
+#          required: 1
+#          size: 15
+#      email:
+#        widget: email
+#        widget_conf:
+#          required: 1
+#          size: 30
+#      description_en:
+#        widget: textarea
+#        widget_conf:
+#          required: 0
+#          wysiwyg: 1
+#      description_zh:
+#        widget: textarea
+#        widget_conf:
+#          required: 1
+#          wysiwyg: 0
+#      active:
+#        widget: checkbox_single
+#        widget_conf: 
+#      owners:
+#        widget: checkbox_multiple
+#        widget_conf:
+#          required: 1
+#          options:
+#            jack: Jack
+#            sue: Sue
+#      price:
+#        widget: select
+#        widget_conf:
+#          required: 0
+#          options:
+#            0: -- Select --
+#            34: $34
+#            45: $45
+#      images:
+#        widget: image
+#        widget_conf:
+#          required: 0
+#          multiple: 1
+#          upload_dir: files/fields/images
+#          transform:
+#            dimension: 500x320
+#            refill: "0,0,0"
+#            watermark: modules/site/assets/images/favicon.png
+#      thumbnail:
+#        widget: image
+#        widget_conf:
+#          required: 1
+#          multiple: 0
+#          upload_dir: files/fields/thumbnail
+#          transform: 0
+#
+#            
+#            
+#          
+#        
+#    names:
+#      en: Project
+#      zh: 项目
+#
+#    
+#    

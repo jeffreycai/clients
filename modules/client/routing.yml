@@ -1,0 +1,22 @@
+routing:
+
+  admin_client_list:
+    path: ^\/admin\/client\/list\/?$
+    isSecure: 1
+    i18n: 1
+    controller: client/backend/client_list
+  admin_client_edit:
+    path: ^\/admin\/client\/edit\/(\d+)\/?$
+    isSecure: 1
+    i18n: 1
+    controller: client/backend/client_edit
+  admin_client_create:
+    path: ^\/admin\/client\/create\/?$
+    isSecure: 1
+    i18n: 1
+    controller: client/backend/client_create
+  admin_client_delete:
+    path: ^\/admin\/client\/delete\/(\d+)\/?$
+    isSecure: 1
+    i18n: 0
+    controller: client/backend/client_delete

@@ -1,0 +1,40 @@
+routing:
+
+  admin_sydneytoday_zufang_list:
+    path: ^\/admin\/sydneytoday_zufang\/list\/?$
+    isSecure: 1
+    i18n: 1
+    controller: sydneytoday_zufang/backend/sydneytoday_zufang_list
+  admin_sydneytoday_zufang_edit:
+    path: ^\/admin\/sydneytoday_zufang\/edit\/(\d+)\/?$
+    isSecure: 1
+    i18n: 1
+    controller: sydneytoday_zufang/backend/sydneytoday_zufang_edit
+  admin_sydneytoday_zufang_create:
+    path: ^\/admin\/sydneytoday_zufang\/create\/?$
+    isSecure: 1
+    i18n: 1
+    controller: sydneytoday_zufang/backend/sydneytoday_zufang_create
+  admin_sydneytoday_zufang_delete:
+    path: ^\/admin\/sydneytoday_zufang\/delete\/(\d+)\/?$
+    isSecure: 1
+    i18n: 0
+    controller: sydneytoday_zufang/backend/sydneytoday_zufang_delete
+    
+    
+
+  admin_sydneytoday_zufang_import_list:
+    path: ^\/admin\/sydneytoday_zufang\/import\/list(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: sydneytoday_zufang/backend/import_list
+  admin_sydneytoday_zufang_import_update:
+    path: ^\/admin\/sydneytoday_zufang\/import\/update\/(\d+)(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: sydneytoday_zufang/backend/import_update
+  admin_sydneytoday_zufang_import_skip:
+    path: ^\/admin\/sydneytoday_zufang\/import\/skip\/(\d+)(\/)?$
+    isSecure: 1
+    i18n: 1
+    controller: sydneytoday_zufang/backend/import_skip
