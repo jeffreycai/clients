@@ -34,8 +34,8 @@
                 <th>property_type</th>
                 <th>suburb</th>
                 <th>address</th>
-                <th>client_comment</th>
-                <th>property_images</th>
+                <!--<th>client_comment</th>-->
+                <!--<th>property_images</th>-->
                 <th>post_id</th>
                 <th>comment</th>
                 <th>source_date</th>
@@ -62,8 +62,8 @@
             <td><?php echo $object->getPropertyType() ?></td>
             <td><?php echo $object->getSuburb() ?></td>
             <td><?php echo $object->getAddress() ?></td>
-            <td><?php echo $object->getClientComment() ?></td>
-            <td><?php echo $object->getPropertyImages() ?></td>
+            <!--<td><?php// echo $object->getClientComment() ?></td>-->
+            <!--<td><?php// echo $object->getPropertyImages() ?></td>-->
             <td><?php echo $object->getPostId() ?></td>
             <td><?php echo $object->getComment() ?></td>
             <td><?php echo $object->getSourceDate() ?></td>
