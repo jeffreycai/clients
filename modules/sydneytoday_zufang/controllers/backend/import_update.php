@@ -36,6 +36,9 @@ if ($sydneytoday_zufang) {
     }
     $client = is_null($client) ? new Client() : $client;
     
+    // when client is new, mark it
+    $rtn->is_new = $client->isNew();
+    
     if (empty($client->getName())) {
       $client->setName($sydneytoday_zufang->getName());
     }

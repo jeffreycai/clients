@@ -63,6 +63,11 @@
       form.serialize(),
       function(data){
         if (data.status == 'success') {
+          if (data.is_new) {
+            $("#" + data.id).css('background-color', '#DFF0D8');
+          } else {
+            $("#" + data.id).css('background-color', '#F2DEDE');
+          }
           $("#" + data.id).fadeOut();
         } else {
           alert(data.message);
