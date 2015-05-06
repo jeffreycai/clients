@@ -16,7 +16,8 @@ function sydneytoday_post_craw($arg) {
     // see if we've crawed this already
     $client = SydneytodayZufang::findByPostId($post_id);
     if ($client) {
-      return true;
+      throw new Exception("This sydneytoday zufang post has been imported before.");
+      return false;
     } else {
       $client = new SydneytodayZufang();
     }
@@ -34,6 +35,7 @@ function sydneytoday_post_craw($arg) {
     $suburb = get_suburb_from_post_page($html);
     $address = get_value_form_post_page($html, "具体地址");
     $client_comment = get_client_comment_from_post_page($html);
+    $source_date = get_source_date_from_post_page($html);
     $property_images = get_images_from_post_page($html);
 
 //      echo "<html><head><meta http-equiv='Content-Type' content='text/html; charset=utf-8' /></head>";
@@ -52,18 +54,18 @@ function sydneytoday_post_craw($arg) {
     $client->setPropertyType($property_type);
     $client->setSuburb($suburb);
     $client->setAddress($address);
+    $client->setSourceDate($source_date);
     $client->setClientComment($client_comment);
     $client->setPropertyImages($property_images);
     $client->setPostId($post_id);
     if ($client->save()) {
       return true;
     } else {
-      new Exception("Failed to save client");
+      throw new Exception("Failed to save client");
+      return false;
     }
-    
-    
-
   }
+  return false;
 }
 
 function get_value_form_post_page($html, $title) {
@@ -81,7 +83,8 @@ function get_value_form_post_page($html, $title) {
     if (is_array($tokens)) {
       array_shift($tokens);
       $rtn = implode(">", $tokens);
-      return iconv('gb2312', 'utf-8', $rtn);
+      $title = iconv('gb2312', 'utf-8', $rtn);
+      return $title ? $title : null;
     }
     return null;
   }
@@ -98,7 +101,8 @@ function get_client_comment_from_post_page($html) {
   preg_match('/<div style="padding:5px 32px 10px 32px;color:#555;">(.*?)<\/div>/', $html, $matches);
   if (isset($matches[1])) {
     $rtn = trim($matches[1]);
-    return iconv('gb2312', 'utf-8', $rtn);
+    $comment = iconv('gb2312', 'utf-8', $rtn);
+    return $comment ? $comment : null;
   }
   return null;
 }
@@ -110,6 +114,12 @@ function get_images_from_post_page($html) {
     return implode("\n", $matches[1]);
   }
   return null;
+}
+
+function get_source_date_from_post_page($html) {
+  $matches = array();
+  preg_match('/ (20\d\d\-\d+\-\d+) /', $html, $matches);
+  return isset($matches[1]) ? strtotime($matches[1]) : null;
 }
 
 

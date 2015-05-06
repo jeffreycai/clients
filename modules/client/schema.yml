@@ -10,6 +10,7 @@ client:
     email: VARCHAR(100)
     address: VARCHAR(512)
     comment: TEXT
+    source_date: INT
     stared: TINYINT(1) DEFAULT 0
 
   indexes:
@@ -54,6 +55,10 @@ client:
         widget_conf:
           required: 0
           wysiwyg: 1
+      source_date:
+        widget: text
+        widget_conf:
+          required: 0
       stared:
         widget: checkbox_single
           

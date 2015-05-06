@@ -38,6 +38,7 @@
                 <th>property_images</th>
                 <th>post_id</th>
                 <th>comment</th>
+                <th>source_date</th>
                 <th>cleaned</th>
                 <th>Actions</th>
       </tr>
@@ -65,6 +66,7 @@
             <td><?php echo $object->getPropertyImages() ?></td>
             <td><?php echo $object->getPostId() ?></td>
             <td><?php echo $object->getComment() ?></td>
+            <td><?php echo $object->getSourceDate() ?></td>
             <td><?php echo $object->getCleaned() ?></td>
             <td>
         <div class="btn-group">

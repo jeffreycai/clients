@@ -12,6 +12,7 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
  * - email
  * - address
  * - comment
+ * - source_date
  * - stared
  */
 class BaseClient extends DBObject {
@@ -87,6 +88,12 @@ class BaseClient extends DBObject {
    public function getComment() {
      return $this->getDbFieldComment();
    }
+   public function setSourceDate($var) {
+     $this->setDbFieldSource_date($var);
+   }
+   public function getSourceDate() {
+     return $this->getDbFieldSource_date();
+   }
    public function setStared($var) {
      $this->setDbFieldStared($var);
    }
@@ -122,6 +129,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `email` VARCHAR(100) ,
   `address` VARCHAR(512) ,
   `comment` TEXT ,
+  `source_date` INT ,
   `stared` TINYINT(1) DEFAULT 0 ,
   PRIMARY KEY (`id`)
  ,

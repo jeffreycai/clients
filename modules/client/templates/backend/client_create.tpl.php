@@ -67,6 +67,11 @@
 
 <script type='text/javascript' src='/libraries/ckeditor/ckeditor.js'></script>
 <script type='text/javascript'>CKEDITOR.replace('comment');</script>  
+<div class='form-group'>
+  <label for='source_date'>source_date</label>
+  <input value='<?php echo htmlentities(str_replace('\'', '"', ($object->isNew() ? (isset($_POST['source_date']) ? strip_tags($_POST['source_date']) : '') : $object->getSourceDate()))) ?>' type='text' class='form-control' id='source_date' name='source_date' />
+</div>
+  
 <div class='checkbox'>
   <label>
     <input type='checkbox' <?php echo ($object->isNew() ? (isset($_POST['stared']) ? ($_POST['stared'] ? 'checked="checked"' : '') : '') : ($object->getStared() ? "checked='checked'" : "")) ?> id='stared' name='stared' value='1' /> stared

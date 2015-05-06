@@ -123,6 +123,9 @@ abstract class DBObject {
       }
       $query .= " (" . implode(',', $insert_fields) . ") VALUES (" . implode(',', $insert_vals) . ");";
     }
+//if ($this->getTableName() == 'sydneytoday_zufang') {
+//  die($query);
+//}
 //die($query);
     $result = $mysqli->query($query);
 

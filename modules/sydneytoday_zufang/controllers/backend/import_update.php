@@ -19,17 +19,17 @@ if ($sydneytoday_zufang) {
 
   if ($sydneytoday_zufang->save()) {
     
-    $client = Client::findByEmail($email);
-    if (!empty($phone)) {
-      $client = is_null($client) ? Client::findByPhone($phone) : $client;
-      $client = is_null($client) ? Client::findByMobile($phone) : $client;
+    $client = null;
+    if (!empty($email)) {
+      $client = is_null($client) ? Client::findByEmail($email) : $client;
     }
     if (!empty($mobile)) {
       $client = is_null($client) ? Client::findByPhone($mobile) : $client;
       $client = is_null($client) ? Client::findByMobile($mobile) : $client;
     }
-    if (!empty($email)) {
-      $client = is_null($client) ? Client::findByEmail($email) : $client;
+    if (!empty($phone)) {
+      $client = is_null($client) ? Client::findByPhone($phone) : $client;
+      $client = is_null($client) ? Client::findByMobile($phone) : $client;
     }
     if (!empty($wechat)) {
       $client = is_null($client) ? Client::findByWechat($wechat) : $client;
@@ -58,7 +58,17 @@ if ($sydneytoday_zufang) {
       $client->setWechat($sydneytoday_zufang->getWechat());
     }
     if (empty($client->getComment())) {
-      $client->setComment($sydneytoday_zufang->getClientComment());
+      $images = "";
+      if (!empty($sydneytoday_zufang->getPropertyImages())) {
+        $tokens = explode("\n", trim($sydneytoday_zufang->getPropertyImages()));
+        foreach ($tokens as $img) {
+          $images .= "<br /><img src='$img' />";
+        }
+      }
+      $client->setComment($sydneytoday_zufang->getClientComment() .$images);
+    }
+    if (empty($client->getSourceDate())) {
+      $client->setSourceDate($sydneytoday_zufang->getSourceDate());
     }
     
     if ($client->save()) {

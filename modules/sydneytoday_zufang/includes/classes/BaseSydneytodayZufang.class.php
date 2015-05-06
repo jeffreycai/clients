@@ -23,6 +23,7 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
  * - property_images
  * - post_id
  * - comment
+ * - source_date
  * - cleaned
  */
 class BaseSydneytodayZufang extends DBObject {
@@ -164,6 +165,12 @@ class BaseSydneytodayZufang extends DBObject {
    public function getComment() {
      return $this->getDbFieldComment();
    }
+   public function setSourceDate($var) {
+     $this->setDbFieldSource_date($var);
+   }
+   public function getSourceDate() {
+     return $this->getDbFieldSource_date();
+   }
    public function setCleaned($var) {
      $this->setDbFieldCleaned($var);
    }
@@ -210,6 +217,7 @@ CREATE TABLE IF NOT EXISTS `sydneytoday_zufang` (
   `property_images` VARCHAR(1024) ,
   `post_id` INT NOT NULL ,
   `comment` TEXT ,
+  `source_date` INT ,
   `cleaned` TINYINT(1) DEFAULT 0 ,
   PRIMARY KEY (`id`)
  ,

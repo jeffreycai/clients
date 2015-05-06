@@ -21,6 +21,7 @@ sydneytoday_zufang:
     property_images: VARCHAR(1024)
     post_id: INT NOT NULL
     comment: TEXT
+    source_date: INT
     cleaned: TINYINT(1) DEFAULT 0
   indexes:
     - `sydneytoday_zufang_post_id` (`post_id` ASC)

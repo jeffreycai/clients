@@ -34,6 +34,8 @@ if (isset($_POST['submit'])) {
   $address = isset($_POST["address"]) ? $_POST["address"] : null;  
   // validation for $comment
   $comment = isset($_POST["comment"]) ? $_POST["comment"] : null;  
+  // validation for $source_date
+  $source_date = isset($_POST["source_date"]) ? strip_tags($_POST["source_date"]) : null;  
   // validation for $stared
   $stared = isset($_POST["stared"]) ? 1 : 0;  /// proceed submission
   
@@ -60,6 +62,9 @@ if (isset($_POST['submit'])) {
   
   // proceed for $comment
   $object->setComment($comment);
+  
+  // proceed for $source_date
+  $object->setSourceDate($source_date);
   
   // proceed for $stared
   $object->setStared($stared);

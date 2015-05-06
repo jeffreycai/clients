@@ -26,7 +26,8 @@
                 <th>qq</th>
                 <th>email</th>
                 <th>address</th>
-                <th>comment</th>
+                <!--<th>comment</th>-->
+                <th>source_date</th>
                 <th>stared</th>
                 <th>Actions</th>
       </tr>
@@ -42,7 +43,8 @@
             <td><?php echo $object->getQq() ?></td>
             <td><?php echo $object->getEmail() ?></td>
             <td><?php echo $object->getAddress() ?></td>
-            <td><?php echo $object->getComment() ?></td>
+            <!--<td><?php// echo $object->getComment() ?></td>-->
+            <td><?php echo date('Y-m-d', $object->getSourceDate()) ?></td>
             <td><?php echo $object->getStared() ?></td>
             <td>
         <div class="btn-group">
