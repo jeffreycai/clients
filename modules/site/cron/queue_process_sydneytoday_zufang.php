@@ -3,7 +3,7 @@ require __DIR__ . "/../../../bootstrap.php";
 
 
 Queue::killAllDeadThreads(220);
-for ($i = 0; $i < 19; $i++) {
+for ($i = 0; $i < 75; $i++) {
   Queue::fetchAndProceed();
 }
 
