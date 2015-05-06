@@ -17,7 +17,7 @@ class SydneytodayZufang extends BaseSydneytodayZufang {
   static function fetchRecordsToClean($num = 20, $has_email = false) {
     global $mysqli;
     $email_condition = $has_email ? " AND (email_img!='' OR email_img IS NOT NULL) " : "";
-    $query = 'SELECT * FROM sydneytoday_zufang WHERE cleaned=0 '.$email_condition.' LIMIT ' . $num;
+    $query = 'SELECT * FROM sydneytoday_zufang WHERE cleaned=0 '.$email_condition.' ORDER BY source_date DESC LIMIT ' . $num;
     $result = $mysqli->query($query);
     $rtn = array();
     while ($result && $b = $result->fetch_object()) {
