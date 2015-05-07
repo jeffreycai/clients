@@ -126,8 +126,8 @@ function get_source_date_from_post_page($html) {
 function sydneytoday_post_list_craw($args) {
   $page = $args['page'];
   $priority = isset($args['priority']) ? $args['priority'] : Queue::PRIORITY_LOWEST;
-  for ($i = $page; $i < $page+20; $i++) {
-    $url = "http://www.sydneytoday.com/list.php?fid=12&page=$i";
+
+    $url = "http://www.sydneytoday.com/list.php?fid=12&page=$page";
     $html = file_get_contents($url);
     $matches = array();
     preg_match_all('/(http:\/\/www\.sydneytoday\.com\/bencandy\.php\?fid=\d+&id=\d+)"> <font color=/', $html, $matches);
@@ -135,6 +135,63 @@ function sydneytoday_post_list_craw($args) {
     foreach ($urls as $url) {
       Queue::addToQueque('sydneytoday_zufang_post', 'craw a zufang post', 'sydneytoday_post_craw', array('url' => $url), $priority);
     }
-  }
+  
   return true;
+}
+
+function load_email_template($name) {
+  ob_start();
+  require __DIR__ . '/../email_templates/' . $name;
+  $content = ob_get_clean();
+  return $content;
+}
+
+function sendMarketingEmail($args) {
+  $settings = Vars::getSettings();
+  
+  $reply_to = $args['reply_to'];
+  $from = $args['from'];
+  $from_nickname = $args['from_nickname'];
+  $subject = $args['subject'];
+  $msg = $args['msg'];
+  $to = $args['to'];
+  
+  load_library_phpmailer();
+
+  $mail = new PHPMailer(true); // the true param means it will throw exceptions on errors, which we need to catch
+
+  $mail->IsSMTP(); // telling the class to use SMTP
+
+  try {
+  //    $mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+    $mail->Mailer = $settings['mail']['general']['mailer'];
+    $mail->SMTPAuth = true;                  // enable SMTP authentication
+    $mail->CharSet = 'UTF-8';
+    $mail->SMTPSecure = $settings['mail']['general']['SMTPSecure'];                 // sets the prefix to the servier
+    $mail->Host = $settings['mail']['general']['host'];      // sets GMAIL as the SMTP server
+    $mail->Port = $settings['mail']['general']['port'];                   // set the SMTP port for the GMAIL server
+    $mail->Username = $settings['mail']['general']['username'];  // GMAIL username
+    $mail->Password = $settings['mail']['general']['password'];            // GMAIL password
+    $mail->AddReplyTo($reply_to);
+    $mail->AddAddress($to);
+    $mail->SetFrom($from, $from_nickname);
+    $mail->Subject = (ENV == 'prod' ? '' : 'DEV: ') . $subject;
+    $mail->MsgHTML($msg);
+    if ($mail->Send() == false) {
+      throw new Exception('Email sent() funciton failed');
+    } else {
+      return true;
+    }
+
+  //    if (class_exists('Log')) {
+  //      $log = new Log('mail', Log::SUCCESS, 'Send email to admin');
+  //      $log->save();
+  //    }
+  } catch (phpmailerException $e) {
+    throw new Exception($e->getMessage());
+    return false;
+  } catch (Exception $e) {
+    throw new Exception($e->getMessage());
+    return false;
+  }
 }
