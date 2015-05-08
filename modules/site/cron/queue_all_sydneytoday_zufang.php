@@ -8,7 +8,7 @@ preg_match('/page=(\d\d\d\d)/', $html, $matches);
 $total_page = $matches[1];
 
 // queue tasks to craw list pages
-for ($page = 1; $page <= $total_page; $page++) {
+for ($page = 180; $page <= 300; $page++) {
 //  echo "$page\n";
   Queue::addToQueque('sydneytoday_zufang_post_list', 'craw a zufang post list', 'sydneytoday_post_list_craw', array('page' => $page), Queue::PRIORITY_HIGH);
 }
