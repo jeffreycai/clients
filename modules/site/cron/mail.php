@@ -2,11 +2,11 @@
 
 require __DIR__ . "/../../../bootstrap.php";
 
-$reply_to = 'sally.cheng051@gmail.com';
-$from = 'sally.cheng051@gmail.com';
-$from_nickname = '悉尼房产小助手';
-$subject = 'Wentworth Point新楼王Jewel，绝佳投资良机！';
-$msg = load_email_template('jewel.php');
+$reply_to = 'fangchanxiaozhushou@gmail.com';
+$from = 'fangchanxiaozhushou@gmail.com';
+$from_nickname = '悉尼人';
+$subject = '悉尼华盛顿公园？';
+$msg = load_email_template('washington-park.php');
 //$to = 'jeffreycaizhenyuan@gmail.com';
 
   $i = 0;
@@ -15,12 +15,12 @@ foreach (Client::findAll() as $client) {
 
   if (preg_match('/(.+)?@(.+)\.(.+)/', $client->getEmail())) {
     $i++;
-    if ($i > 58) {
+
       if (!preg_match('/(.+)?@qq\.com/', $client->getEmail())) {
-        echo $client->getEmail() . "; ";
+        echo $client->getEmail() . ";\n";
         $counter++;
       }
-    }
+
 //    Queue::addToQueque('Marketing email', 'Jewel marketing email', 'sendMarketingEmail', array(
 //        'reply_to' => $reply_to,
 //        'from' => $from,

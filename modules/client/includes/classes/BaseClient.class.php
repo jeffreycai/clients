@@ -14,6 +14,7 @@ include_once MODULESROOT . DS . 'core' . DS . 'includes' . DS . 'classes' . DS .
  * - comment
  * - source_date
  * - stared
+ * - imported_to_google
  */
 class BaseClient extends DBObject {
   /**
@@ -100,6 +101,12 @@ class BaseClient extends DBObject {
    public function getStared() {
      return $this->getDbFieldStared();
    }
+   public function setImportedToGoogle($var) {
+     $this->setDbFieldImported_to_google($var);
+   }
+   public function getImportedToGoogle() {
+     return $this->getDbFieldImported_to_google();
+   }
 
   
   
@@ -131,6 +138,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   `comment` TEXT ,
   `source_date` INT ,
   `stared` TINYINT(1) DEFAULT 0 ,
+  `imported_to_google` TINYINT(1) DEFAULT 0 ,
   PRIMARY KEY (`id`)
  ,
 INDEX `client_phone` (`phone` ASC) ,

@@ -23,13 +23,7 @@ if (isset($_POST['submit'])) {
   // validation for $qq
   $qq = isset($_POST["qq"]) ? strip_tags($_POST["qq"]) : null;  
   // validation for $email
-  $email = isset($_POST["email"]) ? strip_tags($_POST["email"]) : null;
-  $retype_email = isset($_POST["retype_email"]) ? strip_tags($_POST["retype_email"]) : null;
-  if ($email != $retype_email) {
-    Message::register(new Message(Message::DANGER, i18n(array("en" => "Retype value does not match for email", "zh" => "再次输入的email与原值不匹配"))));
-    $error_flag = true;
-  }
-  
+  $email = isset($_POST["email"]) ? strip_tags($_POST["email"]) : null;  
   // validation for $address
   $address = isset($_POST["address"]) ? $_POST["address"] : null;  
   // validation for $comment

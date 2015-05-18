@@ -12,6 +12,7 @@ client:
     comment: TEXT
     source_date: INT
     stared: TINYINT(1) DEFAULT 0
+    imported_to_google: TINYINT(1) DEFAULT 0
 
   indexes:
     - `client_phone` (`phone` ASC)
@@ -42,7 +43,7 @@ client:
         widget_conf:
           required: 0
       email:
-        widget: email
+        widget: text
         widget_conf:
           required: 0
       address:

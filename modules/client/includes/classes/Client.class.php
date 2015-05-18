@@ -46,4 +46,34 @@ class Client extends BaseClient {
     }
     return null;
   }
+  
+  static function findAllWithEmail() {
+    global $mysqli;
+    $query = "SELECT * FROM client WHERE email IS NOT NULL AND email!=''";
+    $result = $mysqli->query($query);
+    
+    $rtn = array();
+    while ($result && $b = $result->fetch_object()) {
+      $obj= new Client();
+      DBObject::importQueryResultToDbObject($b, $obj);
+      $rtn[] = $obj;
+    }
+    
+    return $rtn;
+  }
+  
+  static function findAllToImportToGoogle() {
+    global $mysqli;
+    $query = "SELECT * FROM client WHERE email IS NOT NULL AND email!='' AND imported_to_google=0";
+    $result = $mysqli->query($query);
+    
+    $rtn = array();
+    while ($result && $b = $result->fetch_object()) {
+      $obj= new Client();
+      DBObject::importQueryResultToDbObject($b, $obj);
+      $rtn[] = $obj;
+    }
+    
+    return $rtn;
+  }
 }
